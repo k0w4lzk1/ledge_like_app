@@ -69,6 +69,7 @@ export function Sidebar({ role = "user" }) {
   const pathname = usePathname();
   const router = useRouter();
   const [userName, setUserName] = useState("User Name");
+  const [userBalance, setUserBalance] = useState("25,000.00"); // Sample balance
   const [isMobileOpen, setIsMobileOpen] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
 
@@ -135,8 +136,8 @@ export function Sidebar({ role = "user" }) {
       </div>
 
       {/* User Info */}
-      <div className="flex flex-col items-center py-6">
-        <Avatar className="h-16 w-16 md:h-14 md:w-14">
+      <div className="flex items-center gap-3 py-6 px-4">
+        <Avatar className="h-12 w-12 flex-shrink-0">
           <AvatarImage src="/placeholder-avatar.jpg" alt="User" />
           <AvatarFallback>
             {userName === "Loading..." || userName.length <= 1
@@ -149,9 +150,14 @@ export function Sidebar({ role = "user" }) {
                   .slice(0, 2)}
           </AvatarFallback>
         </Avatar>
-        <h2 className="mt-2 text-sm font-semibold md:hidden lg:block text-center px-2">
-          {userName}
-        </h2>
+        <div className="flex-1 min-w-0 md:hidden lg:block">
+          <h2 className="text-sm font-semibold text-gray-900 truncate">
+            {userName}
+          </h2>
+          <p className="text-xs text-gray-600 mt-1">
+            ₹ {userBalance}
+          </p>
+        </div>
       </div>
 
       <nav className="flex-1 space-y-2 py-4">
