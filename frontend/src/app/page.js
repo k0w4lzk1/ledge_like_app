@@ -2,57 +2,77 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { useState } from "react";
 import { Sidebar } from "./components/sidebar";
 
 export default function Home() {
-  return (
-    <div className="min-h-screen bg-gray-50">
-      <Sidebar role="student" />
-      <div className="ml-0 md:ml-20 lg:ml-64 p-6">
-        <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
-          <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-            <Image
-              className="dark:invert"
-              src="/next.svg"
-              alt="Next.js logo"
-              width={180}
-              height={38}
-              priority
-            />
-            <ol className="font-mono list-inside list-decimal text-sm/6 text-center sm:text-left">
-              <li className="mb-2 tracking-[-.01em]">
-                Welcome to your sidebar demo! The sidebar is now working with:
-              </li>
-              <li className="tracking-[-.01em]">
-                ✅ No external dependencies (no lucide-react, no Apollo, no complex backend)
-              </li>
-              <li className="tracking-[-.01em]">
-                ✅ Responsive design (mobile, tablet, desktop)
-              </li>
-              <li className="tracking-[-.01em]">
-                ✅ Role-based navigation (student, mentor, admin)
-              </li>
-            </ol>
+  const [selectedRole, setSelectedRole] = useState("user"); // Default to user
 
-            <div className="flex gap-4 items-center flex-col sm:flex-row">
-              <Link
-                href="/demo"
-                className="rounded-full border border-solid border-blue-600 transition-colors flex items-center justify-center bg-blue-600 text-white gap-2 hover:bg-blue-700 font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-              >
-                View Demo Page
-              </Link>
-              <a
-                className="rounded-full border border-solid border-black/[.08] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-                href="https://nextjs.org/docs"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Read our docs
-              </a>
+  if (selectedRole === "user") {
+    return (
+      <div className="min-h-screen bg-gray-50">
+        <Sidebar role="user" />
+        <div className="ml-64 md:ml-20 lg:ml-64 p-8">
+          <div className="max-w-7xl mx-auto">
+            <div className="text-center mb-8">
+              <h1 className="text-4xl font-bold text-gray-900 mb-4">ETAKA TRADLINK</h1>
+              <p className="text-lg text-gray-600 mb-6">Welcome to the User Dashboard</p>
+              <div className="space-x-4">
+                <Link
+                  href="/user/dashboard"
+                  className="bg-green-600 text-white px-6 py-2 rounded-lg hover:bg-green-700 transition-colors"
+                >
+                  Go to Dashboard
+                </Link>
+                <button
+                  onClick={() => setSelectedRole("admin")}
+                  className="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition-colors"
+                >
+                  Switch to Admin
+                </button>
+              </div>
             </div>
-          </main>
+            <div className="bg-white rounded-lg shadow p-6">
+              <p className="text-gray-600">You are currently viewing the user interface. Use the sidebar to navigate to different sections.</p>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
-  );
+    );
+  }
+
+  if (selectedRole === "admin") {
+    return (
+      <div className="min-h-screen bg-gray-50">
+        <Sidebar role="admin" />
+        <div className="ml-64 md:ml-20 lg:ml-64 p-8">
+          <div className="max-w-7xl mx-auto">
+            <div className="text-center mb-8">
+              <h1 className="text-4xl font-bold text-gray-900 mb-4">ETAKA TRADLINK</h1>
+              <p className="text-lg text-gray-600 mb-6">Welcome to the Admin Dashboard</p>
+              <div className="space-x-4">
+                <Link
+                  href="/admin/dashboard"
+                  className="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition-colors"
+                >
+                  Go to Dashboard
+                </Link>
+                <button
+                  onClick={() => setSelectedRole("user")}
+                  className="bg-green-600 text-white px-6 py-2 rounded-lg hover:bg-green-700 transition-colors"
+                >
+                  Switch to User
+                </button>
+              </div>
+            </div>
+            <div className="bg-white rounded-lg shadow p-6">
+              <p className="text-gray-600">You are currently viewing the admin interface. Use the sidebar to navigate to different administrative sections.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  return null;
 }

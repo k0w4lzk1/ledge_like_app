@@ -60,15 +60,12 @@ function AvatarFallback({ children }) {
 
 // Simple icon components (using text symbols)
 const icons = {
-  dashboard: "📊",
-  user: "",
   logout: "🚪",
   menu: "☰",
-  close: "✕",
-  chart: "📈"
+  close: "✕"
 };
 
-export function Sidebar() {
+export function Sidebar({ role = "user" }) {
   const pathname = usePathname();
   const router = useRouter();
   const [userName, setUserName] = useState("User Name");
@@ -88,11 +85,28 @@ export function Sidebar() {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  const navItems = [
-    { href: "/dashboard", label: "Dashboard", icon: icons.dashboard },
-    { href: "/profile", label: "Profile", icon: icons.user },
-    { href: "/settings", label: "Settings", icon: icons.chart },
+  const adminNavItems = [
+    { href: "/admin/dashboard", label: "Dashboard" },
+    { href: "/admin/bank-data", label: "Bank Data" },
+    { href: "/admin/today-payout", label: "Today Payout" },
+    { href: "/admin/ledger-book", label: "Ledger Book" },
+    { href: "/admin/create-user", label: "Create User" },
+    { href: "/admin/all-beneficiary", label: "All Beneficiary" },
+    { href: "/admin/balance-request", label: "Balance Request" },
+    { href: "/admin/transactions", label: "Transactions" },
+    { href: "/admin/transaction-type", label: "Transaction Type" },
+    { href: "/admin/todays-profit", label: "Todays Profit Overview" },
   ];
+
+  const userNavItems = [
+    { href: "/user/dashboard", label: "Dashboard" },
+    { href: "/user/today-payout", label: "Today Pay out" },
+    { href: "/user/ledger-book", label: "Ledger book" },
+    { href: "/user/balance-request", label: "Balance Request" },
+    { href: "/user/transaction", label: "Transaction" },
+  ];
+
+  const navItems = role === "admin" ? adminNavItems : userNavItems;
 
   const handleLogout = () => {
     try {
@@ -103,17 +117,25 @@ export function Sidebar() {
       }
 
       setIsMobileOpen(false);
-      router.push("/auth/login");
+      router.push("/");
       console.log("User logged out successfully");
     } catch (error) {
       console.error("Error during logout:", error);
-      router.push("/auth/login");
+      router.push("/");
     }
   };
 
   const sidebarContent = (
     <div className="flex flex-col h-full">
-      <div className="flex flex-col items-center py-4">
+      {/* Company Name */}
+      <div className="py-6 px-4 border-b border-gray-200">
+        <h1 className="text-lg font-bold text-center text-gray-800">
+          ETAKA TRADLINK
+        </h1>
+      </div>
+
+      {/* User Info */}
+      <div className="flex flex-col items-center py-6">
         <Avatar className="h-16 w-16 md:h-14 md:w-14">
           <AvatarImage src="/placeholder-avatar.jpg" alt="User" />
           <AvatarFallback>
@@ -145,8 +167,7 @@ export function Sidebar() {
                 : "text-gray-700"
             )}
           >
-            <span className="text-lg">{item.icon}</span>
-            <span className={cn("hidden lg:inline", isMobileOpen && "inline")}>
+            <span className={cn("md:hidden lg:inline", isMobileOpen && "inline")}>
               {item.label}
             </span>
           </Link>
