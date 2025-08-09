@@ -219,7 +219,7 @@ export function Sidebar({ role = "user" }) {
         >
           <div
             className={cn(
-              "absolute left-0 top-0 h-full w-64 bg-white shadow-lg transition-all duration-300 ease-in-out",
+              "absolute left-0 top-0 h-full w-64 bg-sidebar-bg shadow-lg transition-all duration-300 ease-in-out",
               isMobileOpen ? "translate-x-0" : "-translate-x-full"
             )}
             onClick={(e) => e.stopPropagation()}
@@ -241,7 +241,7 @@ export function Sidebar({ role = "user" }) {
   }
 
   return (
-    <div className="fixed hidden md:block left-0 top-0 z-50 h-screen flex-col border-r bg-white shadow-md p-4 w-64 md:w-20 lg:w-64">
+    <div className="fixed hidden md:block left-0 top-0 z-50 h-screen flex-col border-r bg-sidebar-bg shadow-md p-4 w-64 md:w-20 lg:w-64">
       {sidebarContent}
     </div>
   );
