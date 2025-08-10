@@ -2,13 +2,7 @@
 
 import React, { useState } from 'react';
 
-interface FlexibleTableProps {
-  heading?: string;
-  columns?: string[];
-  data?: Record<string, any>[];
-}
-
-const FlexibleTable: React.FC<FlexibleTableProps> = ({ 
+const FlexibleTable = ({ 
   heading = "My Table", 
   columns = ["Column 1", "Column 2", "Column 3"], 
   data = [] 
@@ -32,7 +26,7 @@ const FlexibleTable: React.FC<FlexibleTableProps> = ({
   const endIndex = startIndex + itemsPerPage;
   const currentData = sampleData.slice(startIndex, endIndex);
   
-  const handlePageChange = (page: number) => {
+  const handlePageChange = (page) => {
     setCurrentPage(page);
   };
   
