@@ -2,6 +2,7 @@
 
 import { Sidebar } from "../../components/sidebar";
 import { DashboardCard } from "../../components/DashboardCard";
+import FlexibleTable from "../../components/FlexibleTable";
 
 export default function UserDashboard() {
   // Sample data for dashboard cards
@@ -36,6 +37,28 @@ export default function UserDashboard() {
     }
   ];
 
+  // Sample table data for transactions
+  const transactionColumns = ["Transaction ID", "Amount", "Type", "Status", "Date", "Actions"];
+  const transactionData = [
+    { "Transaction ID": "TXN001", "Amount": "₹ 2,500", "Type": "Credit", "Status": "Success", "Date": "10/08/2025", "Actions": "View" },
+    { "Transaction ID": "TXN002", "Amount": "₹ 1,200", "Type": "Debit", "Status": "Success", "Date": "10/08/2025", "Actions": "View" },
+    { "Transaction ID": "TXN003", "Amount": "₹ 5,000", "Type": "Credit", "Status": "Pending", "Date": "09/08/2025", "Actions": "View" },
+    { "Transaction ID": "TXN004", "Amount": "₹ 800", "Type": "Debit", "Status": "Failed", "Date": "09/08/2025", "Actions": "Retry" },
+    { "Transaction ID": "TXN005", "Amount": "₹ 3,200", "Type": "Credit", "Status": "Success", "Date": "08/08/2025", "Actions": "View" },
+    { "Transaction ID": "TXN006", "Amount": "₹ 1,500", "Type": "Debit", "Status": "Success", "Date": "08/08/2025", "Actions": "View" },
+    { "Transaction ID": "TXN007", "Amount": "₹ 2,800", "Type": "Credit", "Status": "Success", "Date": "07/08/2025", "Actions": "View" },
+  ];
+
+  // Sample data for balance requests
+  const balanceColumns = ["Request ID", "Requested Amount", "Current Balance", "Status", "Date"];
+  const balanceData = [
+    { "Request ID": "REQ001", "Requested Amount": "₹ 10,000", "Current Balance": "₹ 25,000", "Status": "Approved", "Date": "10/08/2025" },
+    { "Request ID": "REQ002", "Requested Amount": "₹ 5,000", "Current Balance": "₹ 15,000", "Status": "Pending", "Date": "09/08/2025" },
+    { "Request ID": "REQ003", "Requested Amount": "₹ 8,000", "Current Balance": "₹ 10,000", "Status": "Rejected", "Date": "08/08/2025" },
+    { "Request ID": "REQ004", "Requested Amount": "₹ 3,000", "Current Balance": "₹ 2,000", "Status": "Approved", "Date": "07/08/2025" },
+    { "Request ID": "REQ005", "Requested Amount": "₹ 12,000", "Current Balance": "₹ 14,000", "Status": "Pending", "Date": "06/08/2025" },
+  ];
+
   return (
     <div className="min-h-screen bg-app-bg">
       <Sidebar role="user" />
@@ -54,10 +77,22 @@ export default function UserDashboard() {
             ))}
           </div>
 
-          {/* Welcome Section */}
-          <div className="bg-white rounded-lg shadow p-6">
-            <h2 className="text-xl font-semibold text-gray-900 mb-3">Welcome Back!</h2>
-            <p className="text-gray-600">Here's your account overview. Use the cards above to quickly see your key metrics and the sidebar to navigate to different sections.</p>
+          {/* Recent Transactions Table */}
+          <div className="mb-8">
+            <FlexibleTable 
+              heading="Recent Transactions" 
+              columns={transactionColumns} 
+              data={transactionData} 
+            />
+          </div>
+
+          {/* Balance Requests Table */}
+          <div className="mb-8">
+            <FlexibleTable 
+              heading="Balance Requests" 
+              columns={balanceColumns} 
+              data={balanceData} 
+            />
           </div>
         </div>
       </div>
