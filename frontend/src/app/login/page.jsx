@@ -7,8 +7,7 @@ import Link from "next/link";
 export default function Login() {
   const [formData, setFormData] = useState({
     email: "",
-    password: "",
-    category: "user" // default to user
+    password: ""
   });
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
@@ -41,23 +40,32 @@ export default function Login() {
     setError("");
 
     try {
-      // Check credentials
-      const expectedCredentials = credentials[formData.category];
+      // Check against both user and admin credentials
+      let userRole = null;
       
       if (
-        formData.email === expectedCredentials.email &&
-        formData.password === expectedCredentials.password
+        formData.email === credentials.user.email &&
+        formData.password === credentials.user.password
       ) {
+        userRole = "user";
+      } else if (
+        formData.email === credentials.admin.email &&
+        formData.password === credentials.admin.password
+      ) {
+        userRole = "admin";
+      }
+
+      if (userRole) {
         // Store auth data
         localStorage.setItem("authToken", "dummy_token");
-        localStorage.setItem("userRole", formData.category);
+        localStorage.setItem("userRole", userRole);
         localStorage.setItem("userData", JSON.stringify({
           email: formData.email,
-          role: formData.category
+          role: userRole
         }));
 
         // Redirect based on role
-        if (formData.category === "admin") {
+        if (userRole === "admin") {
           router.push("/admin/dashboard");
         } else {
           router.push("/user/dashboard");

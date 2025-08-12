@@ -180,18 +180,6 @@ export default function AdminLedgerBook() {
       <div className="ml-64 md:ml-20 lg:ml-64 p-8">
         <div className="max-w-7xl mx-auto">
           <h1 className="text-3xl font-bold text-gray-900 mb-8">Ledger Book</h1>
-          
-          {/* Download Button */}
-          <div className="mb-4 flex justify-end">
-            <button
-              onClick={downloadCSV}
-              className="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-md font-medium transition-colors flex items-center gap-2"
-            >
-              <span>📥</span>
-              Download CSV
-            </button>
-          </div>
-          
           {/* Ledger Book Table */}
           <FlexibleTable 
             heading="Ledger Book Entries" 
