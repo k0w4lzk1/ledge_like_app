@@ -139,7 +139,7 @@ export function Sidebar({ role = "user" }) {
       {/* User Info */}
       <div className="flex items-center gap-3 py-6 px-4">
         <Avatar className="h-12 w-12 flex-shrink-0">
-          <AvatarImage src="/placeholder-avatar.jpg" alt="User" />
+          <AvatarImage src="https://t4.ftcdn.net/jpg/04/31/64/75/360_F_431647519_usrbQ8Z983hTYe8zgA7t1XVc5fEtqcpa.jpg" alt="User" />
           <AvatarFallback>
             {userName === "Loading..." || userName.length <= 1
               ? "U"
