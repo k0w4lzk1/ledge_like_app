@@ -89,6 +89,7 @@ export function Sidebar({ role = "user" }) {
   const adminNavItems = [
     { href: "/admin/dashboard", label: "Dashboard" },
     { href: "/admin/bank-data", label: "Bank Data" },
+    { href: "/admin/admin-bank-data", label: "Admin Bank Data" },
     { href: "/admin/today-payout", label: "Today Payout" },
     { href: "/admin/ledger-book", label: "Ledger Book" },
     { href: "/admin/create-user", label: "Create User" },
@@ -113,16 +114,16 @@ export function Sidebar({ role = "user" }) {
     try {
       if (typeof window !== "undefined") {
         localStorage.removeItem("authToken");
-        localStorage.removeItem("refreshToken");
+        localStorage.removeItem("userRole");
         localStorage.removeItem("userData");
       }
 
       setIsMobileOpen(false);
-      router.push("/");
+      router.push("/login");
       console.log("User logged out successfully");
     } catch (error) {
       console.error("Error during logout:", error);
-      router.push("/");
+      router.push("/login");
     }
   };
 

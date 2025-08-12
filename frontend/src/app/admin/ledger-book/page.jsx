@@ -125,11 +125,45 @@ export default function AdminLedgerBook() {
     document.body.removeChild(link);
   };
 
-  const columns = ["Sl No", "Name", "Email", "Today Total Transaction", "Today Successful Transaction", "Balance", "Action"];
+  const downloadColumnCSV = (columnName) => {
+    // Prepare CSV for specific column
+    const csvContent = [
+      `Sl No,${columnName}`,
+      ...ledgerData.map(row => {
+        let value = row[columnName];
+        // Remove currency symbol and commas for balance
+        if (columnName === "Balance") {
+          value = value.replace(/[₹,\s]/g, "");
+        }
+        return `${row["Sl No"]},${value}`;
+      })
+    ].join("\n");
 
-  // Enhanced data with actual delete buttons
+    // Create and download file
+    const blob = new Blob([csvContent], { type: "text/csv;charset=utf-8;" });
+    const link = document.createElement("a");
+    const url = URL.createObjectURL(blob);
+    link.setAttribute("href", url);
+    link.setAttribute("download", `${columnName.toLowerCase().replace(/\s+/g, "-")}-${new Date().toISOString().split('T')[0]}.csv`);
+    link.style.visibility = "hidden";
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
+
+  const columns = ["Sl No", "Name", "Email", "Today Total Transaction", "Today Successful Transaction", "Balance", "Download CSV", "Action"];
+
+  // Enhanced data with actual delete buttons and download CSV options
   const enhancedData = ledgerData.map((item, index) => ({
     ...item,
+    "Download CSV": (
+      <button
+        onClick={() => downloadColumnCSV("Balance")}
+        className="bg-blue-500 hover:bg-blue-600 text-white px-3 py-1 rounded text-sm font-medium transition-colors"
+      >
+        Download CSV
+      </button>
+    ),
     "Action": (
       <button
         onClick={() => handleDelete(index)}

@@ -3,6 +3,7 @@
 import { Sidebar } from "../../components/sidebar";
 import { DashboardCard } from "../../components/DashboardCard";
 import FlexibleTable from "../../components/FlexibleTable";
+import { AuthWrapper } from "../../components/AuthWrapper";
 
 export default function UserDashboard() {
   // Sample data for dashboard cards
@@ -60,11 +61,12 @@ export default function UserDashboard() {
   ];
 
   return (
-    <div className="min-h-screen bg-app-bg">
-      <Sidebar role="user" />
-      <div className="ml-64 md:ml-20 lg:ml-64 p-8">
-        <div className="max-w-7xl mx-auto">
-          <h1 className="text-3xl font-bold text-gray-900 mb-8">Dashboard</h1>
+    <AuthWrapper requiredRole="user">
+      <div className="min-h-screen bg-app-bg">
+        <Sidebar role="user" />
+        <div className="ml-64 md:ml-20 lg:ml-64 p-8">
+          <div className="max-w-7xl mx-auto">
+            <h1 className="text-3xl font-bold text-gray-900 mb-8">Dashboard</h1>
           
           {/* Dashboard Cards Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mb-8">
@@ -97,5 +99,6 @@ export default function UserDashboard() {
         </div>
       </div>
     </div>
+    </AuthWrapper>
   );
 }

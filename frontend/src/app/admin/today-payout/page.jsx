@@ -146,27 +146,27 @@ export default function AdminTodayPayout() {
     "Username", "Action"
   ];
 
+  const handleDownloadExcel = () => {
+    console.log("Download Excel clicked");
+  };
+
   return (
     <div className="min-h-screen bg-app-bg">
       <Sidebar role="admin" />
       <div className="ml-64 md:ml-20 lg:ml-64 p-8">
         <div className="max-w-7xl mx-auto">
-          <h1 className="text-3xl font-bold text-gray-900 mb-8">Today Payout</h1>
-          
-          {/* Search Bar */}
-          <div className="mb-4 flex justify-between items-center">
-            <div className="flex items-center gap-4">
-              <input
-                type="text"
-                placeholder="Search by any field..."
-                value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
-                className="px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent w-64"
-              />
-              <span className="text-sm text-gray-500">
-                {filteredData.length} results
-              </span>
-            </div>
+          {/* Page Header with Download Excel Button */}
+          <div className="flex items-center justify-between mb-8">
+            <h1 className="text-3xl font-bold text-gray-900">Today Payout</h1>
+            <button 
+              onClick={handleDownloadExcel}
+              className="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg flex items-center gap-2"
+            >
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+              </svg>
+              Download Excel
+            </button>
           </div>
           
           {/* Payout Table */}
