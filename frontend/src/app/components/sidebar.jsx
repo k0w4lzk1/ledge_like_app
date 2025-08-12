@@ -2,6 +2,20 @@
 
 import { usePathname } from "next/navigation";
 import Link from "next/link";
+import { 
+  Menu, 
+  Search, 
+  Bell, 
+  User, 
+  Home, 
+  Package, 
+  Users, 
+  Settings, 
+  ChevronRight,
+  TrendingUp,
+  Calendar,
+  MapPin
+} from 'lucide-react';
 import { useRouter } from "next/navigation";
 import { useState, useEffect } from "react";
 
@@ -65,13 +79,14 @@ const icons = {
   close: "✕"
 };
 
-export function Sidebar({ role = "user" }) {
-  const pathname = usePathname();
+// Sidebar Component with Skydash styling
+function Sidebar({ role = "admin" }) {
   const router = useRouter();
-  const [userName, setUserName] = useState("User Name");
-  const [userBalance, setUserBalance] = useState("25,000.00"); // Sample balance
+  const [userName, setUserName] = useState("Aamir");
+  const [userBalance, setUserBalance] = useState("25,000.00");
   const [isMobileOpen, setIsMobileOpen] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
+  const [currentPath, setCurrentPath] = useState("/admin/dashboard");
 
   useEffect(() => {
     const handleResize = () => {
@@ -80,130 +95,119 @@ export function Sidebar({ role = "user" }) {
         setIsMobileOpen(false);
       }
     };
-
     handleResize();
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
   const adminNavItems = [
-    { href: "/admin/dashboard", label: "Dashboard" },
-    { href: "/admin/bank-data", label: "Bank Data" },
-    { href: "/admin/admin-bank-data", label: "Admin Bank Data" },
-    { href: "/admin/today-payout", label: "Today Payout" },
-    { href: "/admin/ledger-book", label: "Ledger Book" },
-    { href: "/admin/create-user", label: "Create User" },
-    { href: "/admin/all-beneficiary", label: "All Beneficiary" },
-    { href: "/admin/balance-request", label: "Balance Request" },
-    { href: "/admin/transactions", label: "Transactions" },
-    { href: "/admin/transaction-type", label: "Transaction Type" },
-    { href: "/admin/todays-profit", label: "Todays Profit Overview" },
+    { href: "/admin/dashboard", label: "Dashboard", icon: Home },
+    { href: "/admin/bank-data", label: "Bank Data", icon: Package },
+    { href: "/admin/admin-bank-data", label: "Admin Bank Data", icon: Settings },
+    { href: "/admin/today-payout", label: "Today Payout", icon: TrendingUp },
+    { href: "/admin/ledger-book", label: "Ledger Book", icon: Package },
+    { href: "/admin/create-user", label: "Create User", icon: Users },
+    { href: "/admin/all-beneficiary", label: "All Beneficiary", icon: Users },
+    { href: "/admin/balance-request", label: "Balance Request", icon: Bell },
+    { href: "/admin/transactions", label: "Transactions", icon: Package },
+    { href: "/admin/transaction-type", label: "Transaction Type", icon: Settings },
+    { href: "/admin/todays-profit", label: "Todays Profit Overview", icon: TrendingUp },
   ];
 
   const userNavItems = [
-    { href: "/user/dashboard", label: "Dashboard" },
-    { href: "/user/today-payout", label: "Today Pay out" },
-    { href: "/user/ledger-book", label: "Ledger book" },
-    { href: "/user/balance-request", label: "Balance Request" },
-    { href: "/user/transaction", label: "Transaction" },
+    { href: "/user/dashboard", label: "Dashboard", icon: Home },
+    { href: "/user/today-payout", label: "Today Payout", icon: TrendingUp },
+    { href: "/user/ledger-book", label: "Ledger Book", icon: Package },
+    { href: "/user/balance-request", label: "Balance Request", icon: Bell },
+    { href: "/user/transaction", label: "Transaction", icon: Package },
   ];
 
   const navItems = role === "admin" ? adminNavItems : userNavItems;
 
   const handleLogout = () => {
-    try {
-      if (typeof window !== "undefined") {
-        localStorage.removeItem("authToken");
-        localStorage.removeItem("userRole");
-        localStorage.removeItem("userData");
-      }
+    console.log("User logged out successfully");
+    router.push("/login");
+  };
 
-      setIsMobileOpen(false);
-      router.push("/login");
-      console.log("User logged out successfully");
-    } catch (error) {
-      console.error("Error during logout:", error);
-      router.push("/login");
-    }
+  const handleNavClick = (href) => {
+    setCurrentPath(href);
+    router.push(href); // ✅ Navigate to the page
+    setIsMobileOpen(false);
   };
 
   const sidebarContent = (
     <div className="flex flex-col h-full">
-      {/* Company Name */}
-      <div className="py-6 px-4 border-b border-gray-200">
-        <h1 className="text-lg font-bold text-center text-black">
-          ETAKA TRADLINK
-        </h1>
-      </div>
-
-      {/* User Info */}
-      <div className="flex items-center gap-3 py-6 px-4">
-        <Avatar className="h-12 w-12 flex-shrink-0">
-          <AvatarImage src="https://t4.ftcdn.net/jpg/04/31/64/75/360_F_431647519_usrbQ8Z983hTYe8zgA7t1XVc5fEtqcpa.jpg" alt="User" />
-          <AvatarFallback>
-            {userName === "Loading..." || userName.length <= 1
-              ? "U"
-              : userName
-                  .split(" ")
-                  .map((n) => n[0])
-                  .join("")
-                  .toUpperCase()
-                  .slice(0, 2)}
-          </AvatarFallback>
-        </Avatar>
-        <div className="flex-1 min-w-0 md:hidden lg:block">
-          <h2 className="text-sm font-semibold text-black truncate">
-            {userName}
-          </h2>
-          <p className="text-xs text-black mt-1">
-            ₹ {userBalance}
-          </p>
+      {/* Header */}
+      <div className="p-4 border-b border-gray-100">
+        <div className="flex items-center space-x-3">
+          <div className="w-7 h-7 bg-gradient-to-r from-purple-500 to-indigo-600 rounded-lg flex items-center justify-center">
+            <div className="w-3 h-3 bg-white rounded-sm"></div>
+          </div>
+          <span className="text-lg font-bold text-gray-800 md:hidden lg:block">ETAKA</span>
         </div>
       </div>
 
-      <nav className="flex-1 space-y-2 py-4">
+      {/* User Info */}
+      <div className="flex items-center gap-3 py-4 px-3">
+        <Avatar className="h-10 w-10 flex-shrink-0">
+          <AvatarImage
+            src="https://t4.ftcdn.net/jpg/04/31/64/75/360_F_431647519_usrbQ8Z983hTYe8zgA7t1XVc5fEtqcpa.jpg"
+            alt="User"
+          />
+          <AvatarFallback>
+            {userName.split(" ").map((n) => n[0]).join("").toUpperCase().slice(0, 2)}
+          </AvatarFallback>
+        </Avatar>
+        <div className="flex-1 min-w-0 md:hidden lg:block">
+          <h2 className="text-sm font-semibold text-gray-800 truncate">{userName}</h2>
+          <p className="text-xs text-gray-600 mt-1">₹ {userBalance}</p>
+        </div>
+      </div>
+
+      {/* Navigation */}
+      <nav className="flex-1 space-y-1 py-3">
         {navItems.map((item) => (
-          <Link
+          <button
             key={item.href}
-            href={item.href}
-            onClick={() => setIsMobileOpen(false)}
+            onClick={() => handleNavClick(item.href)}
             className={cn(
-              "flex items-center md:justify-center mx-2 md:mx-0 lg:justify-start gap-3 rounded-md px-3 py-2 text-sm font-medium transition-colors hover:bg-gray-100",
-              pathname.startsWith(item.href)
-                ? "bg-blue-600 text-white hover:bg-blue-700"
-                : "text-black"
+              "w-full flex items-center px-4 py-2 hover:bg-gray-50 transition-colors rounded-md",
+              currentPath === item.href
+                ? "bg-purple-50 text-purple-600 font-medium"
+                : "text-gray-700 hover:text-gray-900"
             )}
           >
-            <span className={cn("md:hidden lg:inline", isMobileOpen && "inline")}>
-              {item.label}
-            </span>
-          </Link>
+            <item.icon
+              className={cn(
+                "w-5 h-5 mr-3",
+                currentPath === item.href ? "text-purple-500" : "text-gray-500"
+              )}
+            />
+            <span className="text-sm">{item.label}</span>
+          </button>
         ))}
       </nav>
 
-      <div className="mt-auto pb-4 px-2">
+      {/* Logout */}
+      <div className="mt-auto pb-3 px-3">
         <Button
           variant="outline"
-          className="w-full flex items-center justify-center gap-2 text-sm font-medium transition-colors hover:bg-gray-100"
+          className="w-full flex items-center justify-center gap-2 text-sm font-medium"
           onClick={handleLogout}
         >
           <span className="text-lg">{icons.logout}</span>
-          <span className={cn("md:hidden lg:inline", isMobileOpen && "inline")}>
-            Log Out
-          </span>
+          <span>Log Out</span>
         </Button>
       </div>
     </div>
   );
 
-  // Mobile menu button component
   const MobileMenuButton = () => (
     <button
       onClick={() => setIsMobileOpen(true)}
       className="md:hidden fixed top-4 left-4 z-30 p-2 rounded-md bg-white shadow-md border border-gray-200 hover:bg-gray-50 transition-colors"
-      aria-label="Open navigation menu"
     >
-      <span className="text-lg">{icons.menu}</span>
+      {icons.menu}
     </button>
   );
 
@@ -220,18 +224,17 @@ export function Sidebar({ role = "user" }) {
         >
           <div
             className={cn(
-              "absolute left-0 top-0 h-full w-64 bg-sidebar-bg shadow-lg transition-all duration-300 ease-in-out",
+              "absolute left-0 top-0 h-full w-56 bg-white shadow-lg transition-all duration-300 ease-in-out",
               isMobileOpen ? "translate-x-0" : "-translate-x-full"
             )}
             onClick={(e) => e.stopPropagation()}
           >
-            <div className="absolute right-4 top-4">
+            <div className="absolute right-3 top-3">
               <button
                 onClick={() => setIsMobileOpen(false)}
                 className="p-1 rounded-full hover:bg-gray-100"
-                aria-label="Close navigation menu"
               >
-                <span className="text-lg">{icons.close}</span>
+                {icons.close}
               </button>
             </div>
             {sidebarContent}
@@ -242,8 +245,9 @@ export function Sidebar({ role = "user" }) {
   }
 
   return (
-    <div className="fixed hidden md:block left-0 top-0 z-50 h-screen flex-col border-r bg-sidebar-bg shadow-md p-4 w-64 md:w-20 lg:w-64">
+    <div className="fixed left-0 top-0 h-full w-56 md:w-20 lg:w-56 bg-white shadow-lg z-10">
       {sidebarContent}
     </div>
   );
 }
+export { Sidebar, Button, Avatar, AvatarImage, AvatarFallback, cn };
