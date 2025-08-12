@@ -53,12 +53,12 @@ export default function AdminBankDataForm() {
           
           {/* Bank Data Form */}
           <div className="bg-white rounded-lg shadow p-6 max-w-2xl">
-            <h2 className="text-xl font-semibold text-gray-800 mb-6">Bank Account Information</h2>
+            <h2 className="text-xl font-semibold text-black mb-6">Bank Account Information</h2>
             
             <div className="space-y-6">
               {/* Bank Account Number */}
               <div>
-                <label htmlFor="bankAccountNumber" className="block text-sm font-medium text-gray-700 mb-2">
+                <label htmlFor="bankAccountNumber" className="block text-sm font-medium text-black mb-2">
                   Bank Account Number *
                 </label>
                 <input
@@ -75,7 +75,7 @@ export default function AdminBankDataForm() {
 
               {/* Confirm Bank Account Number */}
               <div>
-                <label htmlFor="confirmBankAccount" className="block text-sm font-medium text-gray-700 mb-2">
+                <label htmlFor="confirmBankAccount" className="block text-sm font-medium text-black mb-2">
                   Confirm Bank Account Number *
                 </label>
                 <input
@@ -95,7 +95,7 @@ export default function AdminBankDataForm() {
 
               {/* Bank Name */}
               <div>
-                <label htmlFor="bankName" className="block text-sm font-medium text-gray-700 mb-2">
+                <label htmlFor="bankName" className="block text-sm font-medium text-black mb-2">
                   Bank Name *
                 </label>
                 <input

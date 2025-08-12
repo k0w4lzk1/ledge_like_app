@@ -80,7 +80,7 @@ const FlexibleTable = ({
     <div className="bg-sidebar-bg rounded-2xl shadow-sm border border-gray-200 p-6 max-w-full overflow-hidden">
       {/* Header */}
       <div className="flex items-center justify-between mb-4">
-        <h2 className="text-lg font-semibold text-gray-800">{heading}</h2>
+        <h2 className="text-lg font-semibold text-black">{heading}</h2>
       </div>
       
       {/* Controls */}
@@ -88,7 +88,7 @@ const FlexibleTable = ({
         {/* Entries per page selector */}
         {showEntriesSelector && (
           <div className="flex items-center gap-2">
-            <span className="text-sm text-gray-600">Show</span>
+            <span className="text-sm text-black">Show</span>
             <select 
               value={itemsPerPage}
               onChange={(e) => handleEntriesPerPageChange(Number(e.target.value))}
@@ -99,14 +99,14 @@ const FlexibleTable = ({
               <option value={25}>25</option>
               <option value={50}>50</option>
             </select>
-            <span className="text-sm text-gray-600">entries</span>
+            <span className="text-sm text-black">entries</span>
           </div>
         )}
         
         {/* Search */}
         {showSearch && (
           <div className="flex items-center gap-2">
-            <span className="text-sm text-gray-600">Search:</span>
+            <span className="text-sm text-black">Search:</span>
             <input
               type="text"
               value={searchTerm}
@@ -124,7 +124,7 @@ const FlexibleTable = ({
           <thead>
             <tr className="border-b border-gray-200">
               {columns.map((column, index) => (
-                <th key={index} className="text-left py-3 px-4 font-medium text-gray-600 text-sm">
+                <th key={index} className="text-left py-3 px-4 font-medium text-black text-sm">
                   {column}
                 </th>
               ))}
@@ -134,7 +134,7 @@ const FlexibleTable = ({
             {currentData.map((row, rowIndex) => (
               <tr key={rowIndex} className="border-b border-gray-100 hover:bg-gray-50">
                 {columns.map((column, colIndex) => (
-                  <td key={colIndex} className="py-3 px-4 text-sm text-gray-700">
+                  <td key={colIndex} className="py-3 px-4 text-sm text-black">
                     {row[column] || '-'}
                   </td>
                 ))}
@@ -145,7 +145,7 @@ const FlexibleTable = ({
       </div>
       
       {/* Footer with pagination and showing info */}
-      <div className="flex items-center justify-between mt-4 text-sm text-gray-500">
+      <div className="flex items-center justify-between mt-4 text-sm text-black">
         <div>
           Showing {filteredData.length > 0 ? startIndex + 1 : 0} to {Math.min(endIndex, filteredData.length)} of {filteredData.length} entries
         </div>

@@ -21,7 +21,7 @@ function Button({
   const baseClasses = "inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none ring-offset-background";
   const variantClasses = {
     default: "bg-blue-600 text-white hover:bg-blue-700 h-10 py-2 px-4",
-    outline: "border border-gray-300 hover:bg-gray-50 hover:text-gray-900 h-10 py-2 px-4"
+    outline: "border border-black text-black hover:bg-gray-50 hover:text-black h-10 py-2 px-4"
   };
   
   return (
@@ -131,7 +131,7 @@ export function Sidebar({ role = "user" }) {
     <div className="flex flex-col h-full">
       {/* Company Name */}
       <div className="py-6 px-4 border-b border-gray-200">
-        <h1 className="text-lg font-bold text-center text-gray-800">
+        <h1 className="text-lg font-bold text-center text-black">
           ETAKA TRADLINK
         </h1>
       </div>
@@ -152,10 +152,10 @@ export function Sidebar({ role = "user" }) {
           </AvatarFallback>
         </Avatar>
         <div className="flex-1 min-w-0 md:hidden lg:block">
-          <h2 className="text-sm font-semibold text-gray-900 truncate">
+          <h2 className="text-sm font-semibold text-black truncate">
             {userName}
           </h2>
-          <p className="text-xs text-gray-600 mt-1">
+          <p className="text-xs text-black mt-1">
             ₹ {userBalance}
           </p>
         </div>
@@ -171,7 +171,7 @@ export function Sidebar({ role = "user" }) {
               "flex items-center md:justify-center mx-2 md:mx-0 lg:justify-start gap-3 rounded-md px-3 py-2 text-sm font-medium transition-colors hover:bg-gray-100",
               pathname.startsWith(item.href)
                 ? "bg-blue-600 text-white hover:bg-blue-700"
-                : "text-gray-700"
+                : "text-black"
             )}
           >
             <span className={cn("md:hidden lg:inline", isMobileOpen && "inline")}>

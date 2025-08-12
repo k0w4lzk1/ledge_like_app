@@ -78,18 +78,17 @@ export default function Login() {
       <div className="sm:mx-auto sm:w-full sm:max-w-md">
         {/* Company Logo/Name */}
         <div className="text-center">
-          <h1 className="text-3xl font-bold text-gray-900 mb-2">ETAKA TRADLINK</h1>
-          <h2 className="text-xl font-semibold text-gray-600">Sign in to your account</h2>
+          <h1 className="text-3xl font-bold text-black mb-2">ETAKA TRADLINK</h1>
+          <h2 className="text-xl font-semibold text-black">Sign in to your account</h2>
         </div>
       </div>
 
       <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
         <div className="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
           <form className="space-y-6" onSubmit={handleSubmit}>
-            {/* Category Selection */}
             {/* Email */}
             <div>
-              <label htmlFor="email" className="block text-sm font-medium text-gray-700">
+              <label htmlFor="email" className="block text-sm font-medium text-black">
                 Email address
               </label>
               <div className="mt-1">
@@ -109,7 +108,7 @@ export default function Login() {
 
             {/* Password */}
             <div>
-              <label htmlFor="password" className="block text-sm font-medium text-gray-700">
+              <label htmlFor="password" className="block text-sm font-medium text-black">
                 Password
               </label>
               <div className="mt-1">
@@ -147,7 +146,7 @@ export default function Login() {
 
             {/* Sign up link */}
             <div className="text-center">
-              <span className="text-sm text-gray-600">
+              <span className="text-sm text-black">
                 Don't have an account?{" "}
                 <Link href="/signup" className="font-medium text-blue-600 hover:text-blue-500">
                   Sign up
@@ -158,8 +157,8 @@ export default function Login() {
 
           {/* Demo Credentials */}
           <div className="mt-6 p-4 bg-gray-50 rounded-md">
-            <h3 className="text-sm font-medium text-gray-700 mb-2">Demo Credentials:</h3>
-            <div className="text-xs text-gray-600 space-y-1">
+            <h3 className="text-sm font-medium text-black mb-2">Demo Credentials:</h3>
+            <div className="text-xs text-black space-y-1">
               <div><strong>User:</strong> RAMEES@GMAIL.COM / 112929</div>
               <div><strong>Admin:</strong> nisarsuns@gmail.com / NSA@12</div>
             </div>

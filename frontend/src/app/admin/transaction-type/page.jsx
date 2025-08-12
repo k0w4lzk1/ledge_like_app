@@ -20,7 +20,7 @@ export default function TransactionType() {
           
           {/* Transaction Type Selection */}
           <div className="bg-white rounded-lg shadow p-6 max-w-2xl">
-            <h2 className="text-xl font-semibold text-gray-800 mb-6">Select Transaction Type</h2>
+            <h2 className="text-xl font-semibold text-black mb-6">Select Transaction Type</h2>
             
             <div className="space-y-4">
               {/* IMPS Option */}
@@ -34,7 +34,7 @@ export default function TransactionType() {
                   onChange={() => handleTypeChange("IMPS")}
                   className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300"
                 />
-                <label htmlFor="imps" className="ml-3 block text-sm font-medium text-gray-700">
+                <label htmlFor="imps" className="ml-3 block text-sm font-medium text-black">
                   IMPS (Immediate Payment Service)
                 </label>
               </div>
@@ -50,7 +50,7 @@ export default function TransactionType() {
                   onChange={() => handleTypeChange("NEFT")}
                   className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300"
                 />
-                <label htmlFor="neft" className="ml-3 block text-sm font-medium text-gray-700">
+                <label htmlFor="neft" className="ml-3 block text-sm font-medium text-black">
                   NEFT (National Electronic Funds Transfer)
                 </label>
               </div>

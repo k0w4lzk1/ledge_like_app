@@ -83,14 +83,14 @@ export default function CreateUser() {
           
           {/* Create Ledger Book Form */}
           <div className="bg-sidebar-bg rounded-2xl shadow-md p-8 border border-gray-200 max-w-2xl mx-auto">
-            <h2 className="text-xl font-semibold text-gray-800 mb-6 text-center">
+            <h2 className="text-xl font-semibold text-black mb-6 text-center">
               Create New Ledger Book Entry
             </h2>
             
             <div className="space-y-6">
               {/* Name Field */}
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
+                <label className="block text-sm font-medium text-black mb-2">
                   Name <span className="text-red-500">*</span>
                 </label>
                 <input
@@ -110,7 +110,7 @@ export default function CreateUser() {
 
               {/* Email Field */}
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
+                <label className="block text-sm font-medium text-black mb-2">
                   Email <span className="text-red-500">*</span>
                 </label>
                 <input
@@ -130,7 +130,7 @@ export default function CreateUser() {
 
               {/* Password Field */}
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
+                <label className="block text-sm font-medium text-black mb-2">
                   Password <span className="text-red-500">*</span>
                 </label>
                 <input
@@ -150,7 +150,7 @@ export default function CreateUser() {
 
               {/* Confirm Password Field */}
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
+                <label className="block text-sm font-medium text-black mb-2">
                   Confirm Password <span className="text-red-500">*</span>
                 </label>
                 <input

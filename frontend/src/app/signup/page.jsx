@@ -70,8 +70,8 @@ export default function Signup() {
       <div className="sm:mx-auto sm:w-full sm:max-w-md">
         {/* Company Logo/Name */}
         <div className="text-center">
-          <h1 className="text-3xl font-bold text-gray-900 mb-2">ETAKA TRADLINK</h1>
-          <h2 className="text-xl font-semibold text-gray-600">Create your account</h2>
+          <h1 className="text-3xl font-bold text-black mb-2">ETAKA TRADLINK</h1>
+          <h2 className="text-xl font-semibold text-black">Create your account</h2>
         </div>
       </div>
 
@@ -82,7 +82,7 @@ export default function Signup() {
 
             {/* Email */}
             <div>
-              <label htmlFor="email" className="block text-sm font-medium text-gray-700">
+              <label htmlFor="email" className="block text-sm font-medium text-black">
                 Email address
               </label>
               <div className="mt-1">
@@ -102,7 +102,7 @@ export default function Signup() {
 
             {/* Password */}
             <div>
-              <label htmlFor="password" className="block text-sm font-medium text-gray-700">
+              <label htmlFor="password" className="block text-sm font-medium text-black">
                 Password
               </label>
               <div className="mt-1">
@@ -122,7 +122,7 @@ export default function Signup() {
 
             {/* Confirm Password */}
             <div>
-              <label htmlFor="confirmPassword" className="block text-sm font-medium text-gray-700">
+              <label htmlFor="confirmPassword" className="block text-sm font-medium text-black">
                 Confirm Password
               </label>
               <div className="mt-1">
@@ -167,7 +167,7 @@ export default function Signup() {
 
             {/* Sign in link */}
             <div className="text-center">
-              <span className="text-sm text-gray-600">
+              <span className="text-sm text-black">
                 Already have an account?{" "}
                 <Link href="/login" className="font-medium text-blue-600 hover:text-blue-500">
                   Sign in
