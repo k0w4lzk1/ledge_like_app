@@ -181,7 +181,7 @@ export function UserLedgerBook() {
                 Add New
               </Button>
             </DialogTrigger>
-            <DialogContent className="sm:max-w-[600px]">
+            <DialogContent className="sm:max-w-[600px] mx-4 max-h-[90vh] overflow-y-auto">
               <DialogHeader>
                 <DialogTitle>Add New Transaction</DialogTitle>
                 <DialogDescription>
@@ -189,8 +189,8 @@ export function UserLedgerBook() {
                 </DialogDescription>
               </DialogHeader>
               <div className="grid gap-4 py-4">
-                <div className="grid grid-cols-4 items-center gap-4">
-                  <Label htmlFor="bankName" className="text-right">
+                <div className="grid grid-cols-1 sm:grid-cols-4 items-center gap-2 sm:gap-4">
+                  <Label htmlFor="bankName" className="sm:text-right">
                     Bank Name
                   </Label>
                   <Input
@@ -198,11 +198,11 @@ export function UserLedgerBook() {
                     placeholder="Enter bank name"
                     value={newTransaction.bankName}
                     onChange={(e) => setNewTransaction({ ...newTransaction, bankName: e.target.value })}
-                    className="col-span-3"
+                    className="sm:col-span-3"
                   />
                 </div>
-                <div className="grid grid-cols-4 items-center gap-4">
-                  <Label htmlFor="accountNumber" className="text-right">
+                <div className="grid grid-cols-1 sm:grid-cols-4 items-center gap-2 sm:gap-4">
+                  <Label htmlFor="accountNumber" className="sm:text-right">
                     Account Number
                   </Label>
                   <Input
@@ -210,11 +210,11 @@ export function UserLedgerBook() {
                     placeholder="Enter account number"
                     value={newTransaction.accountNumber}
                     onChange={(e) => setNewTransaction({ ...newTransaction, accountNumber: e.target.value })}
-                    className="col-span-3"
+                    className="sm:col-span-3"
                   />
                 </div>
-                <div className="grid grid-cols-4 items-center gap-4">
-                  <Label htmlFor="accountHolder" className="text-right">
+                <div className="grid grid-cols-1 sm:grid-cols-4 items-center gap-2 sm:gap-4">
+                  <Label htmlFor="accountHolder" className="sm:text-right">
                     Account Holder
                   </Label>
                   <Input
@@ -222,11 +222,11 @@ export function UserLedgerBook() {
                     placeholder="Enter account holder name"
                     value={newTransaction.accountHolder}
                     onChange={(e) => setNewTransaction({ ...newTransaction, accountHolder: e.target.value })}
-                    className="col-span-3"
+                    className="sm:col-span-3"
                   />
                 </div>
-                <div className="grid grid-cols-4 items-center gap-4">
-                  <Label htmlFor="ifscCode" className="text-right">
+                <div className="grid grid-cols-1 sm:grid-cols-4 items-center gap-2 sm:gap-4">
+                  <Label htmlFor="ifscCode" className="sm:text-right">
                     IFSC Code
                   </Label>
                   <Input
@@ -234,11 +234,11 @@ export function UserLedgerBook() {
                     placeholder="Enter IFSC code"
                     value={newTransaction.ifscCode}
                     onChange={(e) => setNewTransaction({ ...newTransaction, ifscCode: e.target.value })}
-                    className="col-span-3"
+                    className="sm:col-span-3"
                   />
                 </div>
-                <div className="grid grid-cols-4 items-center gap-4">
-                  <Label htmlFor="amount" className="text-right">
+                <div className="grid grid-cols-1 sm:grid-cols-4 items-center gap-2 sm:gap-4">
+                  <Label htmlFor="amount" className="sm:text-right">
                     Amount
                   </Label>
                   <Input
@@ -247,18 +247,18 @@ export function UserLedgerBook() {
                     placeholder="Enter amount"
                     value={newTransaction.amount}
                     onChange={(e) => setNewTransaction({ ...newTransaction, amount: e.target.value })}
-                    className="col-span-3"
+                    className="sm:col-span-3"
                   />
                 </div>
-                <div className="grid grid-cols-4 items-center gap-4">
-                  <Label htmlFor="transactionType" className="text-right">
+                <div className="grid grid-cols-1 sm:grid-cols-4 items-center gap-2 sm:gap-4">
+                  <Label htmlFor="transactionType" className="sm:text-right">
                     Type
                   </Label>
                   <Select
                     value={newTransaction.transactionType}
                     onValueChange={(value) => setNewTransaction({ ...newTransaction, transactionType: value })}
                   >
-                    <SelectTrigger className="col-span-3">
+                    <SelectTrigger className="sm:col-span-3">
                       <SelectValue />
                     </SelectTrigger>
                     <SelectContent>
@@ -269,8 +269,8 @@ export function UserLedgerBook() {
                     </SelectContent>
                   </Select>
                 </div>
-                <div className="grid grid-cols-4 items-center gap-4">
-                  <Label htmlFor="remark" className="text-right">
+                <div className="grid grid-cols-1 sm:grid-cols-4 items-center gap-2 sm:gap-4">
+                  <Label htmlFor="remark" className="sm:text-right">
                     Remark
                   </Label>
                   <Input
@@ -278,15 +278,15 @@ export function UserLedgerBook() {
                     placeholder="Enter remark"
                     value={newTransaction.remark}
                     onChange={(e) => setNewTransaction({ ...newTransaction, remark: e.target.value })}
-                    className="col-span-3"
+                    className="sm:col-span-3"
                   />
                 </div>
               </div>
-              <DialogFooter>
-                <Button type="button" variant="outline" onClick={() => setIsDialogOpen(false)}>
+              <DialogFooter className="flex-col sm:flex-row gap-2">
+                <Button type="button" variant="outline" onClick={() => setIsDialogOpen(false)} className="w-full sm:w-auto">
                   Cancel
                 </Button>
-                <Button type="button" onClick={handleAddTransaction}>
+                <Button type="button" onClick={handleAddTransaction} className="w-full sm:w-auto">
                   Add Transaction
                 </Button>
               </DialogFooter>

@@ -90,24 +90,28 @@ const quickActions = [
     icon: Plus,
     color: "bg-blue-500 hover:bg-blue-600",
     description: "Create a new transaction",
+    href: "/user/transaction",
   },
   {
     label: "Add Beneficiary",
     icon: UserPlus,
     color: "bg-indigo-500 hover:bg-indigo-600",
     description: "Add new beneficiary",
+    href: "/user/add-beneficiary",
   },
   {
     label: "View Reports",
     icon: Eye,
     color: "bg-green-500 hover:bg-green-600",
     description: "View detailed reports",
+    href: "/user/today-pay-out",
   },
   {
     label: "Balance Request",
     icon: DollarSign,
     color: "bg-orange-500 hover:bg-orange-600",
     description: "Request balance update",
+    href: "/user/balance-request",
   },
 ]
 
@@ -191,16 +195,17 @@ export function UserDashboard() {
         <CardContent>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
             {quickActions.map((action) => (
-              <Button
-                key={action.label}
-                className={`${action.color} text-white h-auto p-4 flex-col space-y-2 shadow-lg hover:shadow-xl transition-all duration-200`}
-              >
-                <action.icon className="h-6 w-6" />
-                <div className="text-center">
-                  <div className="font-semibold text-sm">{action.label}</div>
-                  <div className="text-xs opacity-90">{action.description}</div>
-                </div>
-              </Button>
+              <Link key={action.label} href={action.href}>
+                <Button
+                  className={`${action.color} text-white h-auto p-4 flex-col space-y-2 shadow-lg hover:shadow-xl transition-all duration-200 w-full`}
+                >
+                  <action.icon className="h-6 w-6" />
+                  <div className="text-center">
+                    <div className="font-semibold text-sm">{action.label}</div>
+                    <div className="text-xs opacity-90">{action.description}</div>
+                  </div>
+                </Button>
+              </Link>
             ))}
           </div>
         </CardContent>

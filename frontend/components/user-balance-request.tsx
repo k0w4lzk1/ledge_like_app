@@ -112,7 +112,7 @@ export function UserBalanceRequest() {
               New Request
             </Button>
           </DialogTrigger>
-          <DialogContent className="sm:max-w-[425px]">
+          <DialogContent className="sm:max-w-[425px] mx-4 max-h-[90vh] overflow-y-auto">
             <DialogHeader>
               <DialogTitle>Create New Balance Request</DialogTitle>
               <DialogDescription>
@@ -120,8 +120,8 @@ export function UserBalanceRequest() {
               </DialogDescription>
             </DialogHeader>
             <div className="grid gap-4 py-4">
-              <div className="grid grid-cols-4 items-center gap-4">
-                <Label htmlFor="amount" className="text-right">
+              <div className="grid grid-cols-1 sm:grid-cols-4 items-center gap-2 sm:gap-4">
+                <Label htmlFor="amount" className="sm:text-right">
                   Amount
                 </Label>
                 <Input
@@ -130,18 +130,18 @@ export function UserBalanceRequest() {
                   placeholder="Enter amount"
                   value={newRequest.amount}
                   onChange={(e) => setNewRequest({ ...newRequest, amount: e.target.value })}
-                  className="col-span-3"
+                  className="sm:col-span-3"
                 />
               </div>
-              <div className="grid grid-cols-4 items-center gap-4">
-                <Label htmlFor="type" className="text-right">
+              <div className="grid grid-cols-1 sm:grid-cols-4 items-center gap-2 sm:gap-4">
+                <Label htmlFor="type" className="sm:text-right">
                   Type
                 </Label>
                 <Select
                   value={newRequest.requestType}
                   onValueChange={(value) => setNewRequest({ ...newRequest, requestType: value })}
                 >
-                  <SelectTrigger className="col-span-3">
+                  <SelectTrigger className="sm:col-span-3">
                     <SelectValue />
                   </SelectTrigger>
                   <SelectContent>
@@ -152,11 +152,11 @@ export function UserBalanceRequest() {
                 </Select>
               </div>
             </div>
-            <DialogFooter>
-              <Button type="button" variant="outline" onClick={() => setIsDialogOpen(false)}>
+            <DialogFooter className="flex-col sm:flex-row gap-2">
+              <Button type="button" variant="outline" onClick={() => setIsDialogOpen(false)} className="w-full sm:w-auto">
                 Cancel
               </Button>
-              <Button type="button" onClick={handleAddRequest}>
+              <Button type="button" onClick={handleAddRequest} className="w-full sm:w-auto">
                 Submit Request
               </Button>
             </DialogFooter>

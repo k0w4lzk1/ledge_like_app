@@ -75,30 +75,30 @@ export function LoginForm() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-gray-900 dark:to-gray-800 flex items-center justify-center p-4">
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-gray-900 dark:to-gray-800 flex items-center justify-center p-4 sm:p-6 lg:p-8">
       <div className="w-full max-w-md">
         {/* Logo and Header */}
-        <div className="text-center mb-8">
-          <div className="mx-auto h-16 w-16 bg-blue-600 rounded-xl flex items-center justify-center mb-4">
-            <span className="text-white font-bold text-2xl">ET</span>
+        <div className="text-center mb-6 sm:mb-8">
+          <div className="mx-auto h-12 w-12 sm:h-16 sm:w-16 bg-blue-600 rounded-xl flex items-center justify-center mb-4">
+            <span className="text-white font-bold text-xl sm:text-2xl">ET</span>
           </div>
-          <h1 className="text-3xl font-bold text-gray-900 dark:text-white">ETAKA TRADLINK</h1>
-          <p className="text-gray-600 dark:text-gray-400 mt-2">Ledger Book Management System</p>
+          <h1 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white">ETAKA TRADLINK</h1>
+          <p className="text-gray-600 dark:text-gray-400 mt-2 text-sm sm:text-base">Ledger Book Management System</p>
         </div>
 
         {/* Login Card */}
         <Card className="shadow-xl border-0">
-          <CardHeader className="space-y-1 pb-6">
-            <CardTitle className="text-2xl font-bold text-center">Welcome Back</CardTitle>
-            <CardDescription className="text-center">Sign in to your account to continue</CardDescription>
+          <CardHeader className="space-y-1 pb-4 sm:pb-6">
+            <CardTitle className="text-xl sm:text-2xl font-bold text-center">Welcome Back</CardTitle>
+            <CardDescription className="text-center text-sm sm:text-base">Sign in to your account to continue</CardDescription>
           </CardHeader>
-          <CardContent>
-            <form onSubmit={handleSubmit} className="space-y-4">
+          <CardContent className="px-4 sm:px-6">
+            <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-4">
               {/* ...removed role selection... */}
 
               {/* Username */}
               <div className="space-y-2">
-                <Label htmlFor="username">Username</Label>
+                <Label htmlFor="username" className="text-sm sm:text-base">Username</Label>
                 <Input
                   id="username"
                   type="text"
@@ -106,13 +106,13 @@ export function LoginForm() {
                   value={formData.username}
                   onChange={(e) => handleChange("username", e.target.value)}
                   disabled={isLoading}
-                  className="h-11"
+                  className="h-10 sm:h-11 text-sm sm:text-base"
                 />
               </div>
 
               {/* Password */}
               <div className="space-y-2">
-                <Label htmlFor="password">Password</Label>
+                <Label htmlFor="password" className="text-sm sm:text-base">Password</Label>
                 <div className="relative">
                   <Input
                     id="password"
@@ -121,7 +121,7 @@ export function LoginForm() {
                     value={formData.password}
                     onChange={(e) => handleChange("password", e.target.value)}
                     disabled={isLoading}
-                    className="h-11 pr-10"
+                    className="h-10 sm:h-11 pr-10 text-sm sm:text-base"
                   />
                   <Button
                     type="button"
@@ -145,7 +145,7 @@ export function LoginForm() {
               )}
 
               {/* Login Button */}
-              <Button type="submit" className="w-full h-11 text-base font-medium" disabled={isLoading}>
+              <Button type="submit" className="w-full h-10 sm:h-11 text-sm sm:text-base font-medium" disabled={isLoading}>
                 {isLoading ? (
                   <div className="flex items-center">
                     <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white mr-2"></div>
@@ -161,8 +161,8 @@ export function LoginForm() {
             </form>
 
             {/* Demo Credentials */}
-            <div className="mt-6 p-4 bg-gray-50 dark:bg-gray-800 rounded-lg">
-              <p className="text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Demo Credentials:</p>
+            <div className="mt-4 sm:mt-6 p-3 sm:p-4 bg-gray-50 dark:bg-gray-800 rounded-lg">
+              <p className="text-xs sm:text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Demo Credentials:</p>
               <div className="space-y-1 text-xs text-gray-600 dark:text-gray-400">
                 <p>
                   <strong>Admin:</strong> username: admin, password: admin123
@@ -174,8 +174,8 @@ export function LoginForm() {
             </div>
 
             {/* Signup Link */}
-            <div className="mt-6 text-center">
-              <p className="text-sm text-gray-600 dark:text-gray-400">
+            <div className="mt-4 sm:mt-6 text-center">
+              <p className="text-xs sm:text-sm text-gray-600 dark:text-gray-400">
                 Don't have an account?{" "}
                 <Link href="/signup" className="text-blue-600 hover:text-blue-500 font-medium">
                   Sign up
@@ -186,7 +186,7 @@ export function LoginForm() {
         </Card>
 
         {/* Footer */}
-        <div className="text-center mt-8 text-sm text-gray-500 dark:text-gray-400">
+        <div className="text-center mt-6 sm:mt-8 text-xs sm:text-sm text-gray-500 dark:text-gray-400">
           <p>&copy; 2025 ETAKA TRADLINK. All rights reserved.</p>
         </div>
       </div>

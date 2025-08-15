@@ -112,7 +112,7 @@ export function UserDashboardLayout({ children }: UserDashboardLayoutProps) {
           <div className="flex h-full flex-col">
             {/* Mobile sidebar header */}
             <div className="bg-gradient-to-r from-blue-600 to-blue-700 p-4 text-white">
-              <div className="flex items-center justify-between mb-4">
+              <div className="flex items-center mb-4">
                 <Link href="/user" className="flex items-center space-x-3" onClick={closeSidebar}>
                   <div className="h-10 w-10 bg-white/20 rounded-xl flex items-center justify-center">
                     <span className="text-white font-bold">ET</span>
@@ -122,9 +122,6 @@ export function UserDashboardLayout({ children }: UserDashboardLayoutProps) {
                     <div className="text-xs text-blue-100">User Portal</div>
                   </div>
                 </Link>
-                <Button variant="ghost" size="sm" onClick={closeSidebar} className="text-white hover:bg-white/20">
-                  <X className="h-5 w-5" />
-                </Button>
               </div>
 
               {/* Balance in header */}
@@ -163,48 +160,32 @@ export function UserDashboardLayout({ children }: UserDashboardLayoutProps) {
                 )
               })}
             </nav>
-
-            {/* Mobile user section */}
-            <div className="border-t p-4 bg-gray-50">
-              <div className="flex items-center space-x-3">
-                <Avatar className="h-10 w-10">
-                  <AvatarImage src="/placeholder-user.jpg" />
-                  <AvatarFallback className="bg-blue-500 text-white font-bold">
-                    {username?.slice(0, 2).toUpperCase() || "US"}
-                  </AvatarFallback>
-                </Avatar>
-                <div className="flex-1 min-w-0">
-                  <p className="text-sm font-semibold text-gray-900 truncate">{username?.toUpperCase() || "USER"}</p>
-                  <p className="text-xs text-gray-500">User Account</p>
-                </div>
-              </div>
-            </div>
           </div>
         </SheetContent>
       </Sheet>
 
       {/* Top Header */}
       <header className="bg-white shadow-sm border-b sticky top-0 z-40">
-        <div className="flex items-center justify-between px-4 sm:px-6 h-16">
-          <div className="flex items-center space-x-4">
-            <Button variant="ghost" size="sm" className="lg:hidden" onClick={() => setSidebarOpen(true)}>
+        <div className="flex items-center justify-between px-4 sm:px-6 h-14 sm:h-16">
+          <div className="flex items-center space-x-2 sm:space-x-4">
+            <Button variant="ghost" size="sm" className="lg:hidden p-2" onClick={() => setSidebarOpen(true)}>
               <Menu className="h-5 w-5" />
             </Button>
 
-            <div className="flex items-center space-x-3">
-              <div className="h-8 w-8 bg-gradient-to-r from-blue-600 to-blue-700 rounded-lg flex items-center justify-center">
-                <span className="text-white font-bold text-sm">ET</span>
+            <div className="flex items-center space-x-2 sm:space-x-3">
+              <div className="h-7 w-7 sm:h-8 sm:w-8 bg-gradient-to-r from-blue-600 to-blue-700 rounded-lg flex items-center justify-center">
+                <span className="text-white font-bold text-xs sm:text-sm">ET</span>
               </div>
               <div className="hidden sm:block">
-                <span className="text-xl font-bold text-gray-900">ETAKA</span>
-                <span className="text-xl font-bold text-blue-600 ml-1">TRADLINK</span>
+                <span className="text-lg sm:text-xl font-bold text-gray-900">ETAKA</span>
+                <span className="text-lg sm:text-xl font-bold text-blue-600 ml-1">TRADLINK</span>
               </div>
             </div>
           </div>
 
-          <div className="flex items-center space-x-3">
+          <div className="flex items-center space-x-2 sm:space-x-3">
             {/* Balance Badge - Mobile */}
-            <div className="sm:hidden bg-gradient-to-r from-green-500 to-green-600 text-white px-3 py-1 rounded-full text-xs font-semibold">
+            <div className="sm:hidden bg-gradient-to-r from-green-500 to-green-600 text-white px-2 py-1 rounded-full text-xs font-semibold">
               ₹{balance}
             </div>
 
@@ -313,22 +294,6 @@ export function UserDashboardLayout({ children }: UserDashboardLayoutProps) {
               )
             })}
           </nav>
-
-          {/* User Info */}
-          <div className="border-t p-4 bg-gray-50 flex-shrink-0">
-            <div className="flex items-center space-x-3">
-              <Avatar className="h-10 w-10">
-                <AvatarImage src="/placeholder-user.jpg" />
-                <AvatarFallback className="bg-blue-500 text-white font-bold">
-                  {username?.slice(0, 2).toUpperCase() || "US"}
-                </AvatarFallback>
-              </Avatar>
-              <div className="flex-1 min-w-0">
-                <p className="text-sm font-semibold text-gray-900 truncate">{username?.toUpperCase() || "USER"}</p>
-                <p className="text-xs text-gray-500">User Account</p>
-              </div>
-            </div>
-          </div>
         </aside>
 
         {/* Main Content */}
