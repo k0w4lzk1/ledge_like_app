@@ -23,7 +23,7 @@ const mainStats = [
     title: "Today's Address Book",
     value: "17",
     icon: Users,
-    gradient: "from-blue-500 to-blue-600",
+    color: "blue",
     change: "+12%",
     changeType: "positive" as const,
   },
@@ -32,7 +32,7 @@ const mainStats = [
     value: "872,700.00",
     prefix: "₹",
     icon: ArrowUpDown,
-    gradient: "from-orange-500 to-orange-600",
+    color: "orange",
     change: "+15%",
     changeType: "positive" as const,
   },
@@ -88,28 +88,28 @@ const quickActions = [
   {
     label: "New Transaction",
     icon: Plus,
-    color: "bg-blue-500 hover:bg-blue-600",
+    color: "blue",
     description: "Create a new transaction",
     href: "/user/transaction",
   },
   {
     label: "Add Beneficiary",
     icon: UserPlus,
-    color: "bg-indigo-500 hover:bg-indigo-600",
+    color: "indigo",
     description: "Add new beneficiary",
     href: "/user/add-beneficiary",
   },
   {
     label: "View Reports",
     icon: Eye,
-    color: "bg-green-500 hover:bg-green-600",
+    color: "green",
     description: "View detailed reports",
     href: "/user/today-pay-out",
   },
   {
     label: "Balance Request",
     icon: DollarSign,
-    color: "bg-orange-500 hover:bg-orange-600",
+    color: "orange",
     description: "Request balance update",
     href: "/user/balance-request",
   },
@@ -160,27 +160,25 @@ export function UserDashboard() {
       {/* Main Stats */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6">
         {mainStats.map((stat) => (
-          <Card key={stat.title} className="overflow-hidden border-0 shadow-lg">
-            <CardContent className="p-0">
-              <div className={`bg-gradient-to-br ${stat.gradient} text-white p-4 sm:p-6`}>
-                <div className="flex items-center justify-between">
-                  <div className="flex-1 min-w-0">
-                    <div className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-2 truncate">
-                      {stat.prefix && <span className="text-2xl sm:text-3xl lg:text-4xl">{stat.prefix}</span>}
-                      {stat.value}
-                    </div>
-                    <div className="text-sm sm:text-lg opacity-90 font-medium">{stat.title}</div>
-                    <div className="flex items-center mt-3">
-                      <TrendingUp className="h-4 w-4 mr-1" />
-                      <span className="text-sm font-medium">{stat.change} from yesterday</span>
-                    </div>
-                  </div>
-                  <div className="ml-4 flex-shrink-0">
-                    <div className="p-2 sm:p-3 bg-white/20 rounded-xl backdrop-blur-sm">
-                      <stat.icon className="h-8 w-8 sm:h-10 sm:w-10" />
-                    </div>
-                  </div>
-                </div>
+          <Card key={stat.title} className="relative overflow-hidden">
+            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2 p-3 sm:p-6">
+              <CardTitle className="text-xs sm:text-sm font-medium text-gray-600 dark:text-gray-400 leading-tight">
+                {stat.title}
+              </CardTitle>
+              <div className={`p-1.5 sm:p-2 rounded-lg bg-${stat.color}-100 dark:bg-${stat.color}-900 flex-shrink-0`}>
+                <stat.icon className={`h-3 w-3 sm:h-4 sm:w-4 text-${stat.color}-600 dark:text-${stat.color}-400`} />
+              </div>
+            </CardHeader>
+            <CardContent className="p-3 sm:p-6 pt-0">
+              <div className="text-lg sm:text-xl lg:text-2xl font-bold text-gray-900 dark:text-white break-all sm:break-normal">
+                {stat.prefix && <span className="text-base sm:text-lg lg:text-xl">{stat.prefix}</span>}
+                {stat.value}
+              </div>
+              <div className="flex items-center mt-1 sm:mt-2">
+                <TrendingUp className="h-3 w-3 sm:h-4 sm:w-4 text-green-500 mr-1 flex-shrink-0" />
+                <span className="text-xs sm:text-sm text-green-600">
+                  {stat.change} from yesterday
+                </span>
               </div>
             </CardContent>
           </Card>
@@ -188,23 +186,25 @@ export function UserDashboard() {
       </div>
 
       {/* Quick Actions */}
-      <Card className="border-0 shadow-lg">
-        <CardHeader>
-          <CardTitle className="text-xl font-bold text-gray-900">Quick Actions</CardTitle>
+      <Card>
+        <CardHeader className="p-3 sm:p-6">
+          <CardTitle className="text-sm sm:text-base font-bold text-gray-900 dark:text-white">Quick Actions</CardTitle>
         </CardHeader>
-        <CardContent>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        <CardContent className="p-3 sm:p-6 pt-0">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
             {quickActions.map((action) => (
               <Link key={action.label} href={action.href}>
-                <Button
-                  className={`${action.color} text-white h-auto p-4 flex-col space-y-2 shadow-lg hover:shadow-xl transition-all duration-200 w-full`}
-                >
-                  <action.icon className="h-6 w-6" />
-                  <div className="text-center">
-                    <div className="font-semibold text-sm">{action.label}</div>
-                    <div className="text-xs opacity-90">{action.description}</div>
+                <div className="group p-4 border border-gray-200 rounded-lg hover:border-gray-300 hover:shadow-md transition-all duration-200 cursor-pointer">
+                  <div className="flex flex-col items-center space-y-2 text-center">
+                    <div className={`p-2 rounded-lg bg-${action.color}-100 dark:bg-${action.color}-900 group-hover:bg-${action.color}-200 dark:group-hover:bg-${action.color}-800 transition-colors`}>
+                      <action.icon className={`h-5 w-5 text-${action.color}-600 dark:text-${action.color}-400`} />
+                    </div>
+                    <div>
+                      <div className="font-semibold text-sm text-gray-900 dark:text-white">{action.label}</div>
+                      <div className="text-xs text-gray-500 dark:text-gray-400">{action.description}</div>
+                    </div>
                   </div>
-                </Button>
+                </div>
               </Link>
             ))}
           </div>
