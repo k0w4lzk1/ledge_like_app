@@ -79,42 +79,42 @@ const quickActions = [
 
 export function DashboardOverview() {
   return (
-    <div className="space-y-4 sm:space-y-6">
+    <div className="space-y-4 sm:space-y-6 p-4 sm:p-0">
       {/* Header */}
       <div className="flex flex-col space-y-4 sm:flex-row sm:items-center sm:justify-between sm:space-y-0">
         <div>
-          <h1 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white">Dashboard Overview</h1>
-          <p className="text-gray-600 dark:text-gray-400 mt-1">Welcome back! Here's what's happening today.</p>
+          <h1 className="text-xl sm:text-2xl lg:text-3xl font-bold text-gray-900 dark:text-white">Dashboard Overview</h1>
+          <p className="text-sm sm:text-base text-gray-600 dark:text-gray-400 mt-1">Welcome back! Here's what's happening today.</p>
         </div>
         <div className="flex flex-wrap gap-2">
           {quickActions.map((action) => (
-            <Button key={action.label} variant="outline" size="sm" className="flex-1 sm:flex-none">
-              <action.icon className="h-4 w-4 mr-2" />
-              <span className="hidden sm:inline">{action.label}</span>
+            <Button key={action.label} variant="outline" size="sm" className="flex-1 sm:flex-none min-w-0">
+              <action.icon className="h-4 w-4 sm:mr-2" />
+              <span className="hidden sm:inline text-xs sm:text-sm">{action.label}</span>
             </Button>
           ))}
         </div>
       </div>
 
       {/* Stats Grid */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-3 sm:gap-4 lg:gap-6">
         {stats.map((stat) => (
           <Card key={stat.title} className="relative overflow-hidden">
-            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-medium text-gray-600 dark:text-gray-400 line-clamp-2">
+            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2 p-3 sm:p-6">
+              <CardTitle className="text-xs sm:text-sm font-medium text-gray-600 dark:text-gray-400 leading-tight">
                 {stat.title}
               </CardTitle>
-              <div className={`p-2 rounded-lg bg-${stat.color}-100 dark:bg-${stat.color}-900 flex-shrink-0`}>
-                <stat.icon className={`h-4 w-4 text-${stat.color}-600 dark:text-${stat.color}-400`} />
+              <div className={`p-1.5 sm:p-2 rounded-lg bg-${stat.color}-100 dark:bg-${stat.color}-900 flex-shrink-0`}>
+                <stat.icon className={`h-3 w-3 sm:h-4 sm:w-4 text-${stat.color}-600 dark:text-${stat.color}-400`} />
               </div>
             </CardHeader>
-            <CardContent>
-              <div className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white truncate">{stat.value}</div>
-              <div className="flex items-center mt-2">
-                {stat.trend === "up" && <TrendingUp className="h-4 w-4 text-green-500 mr-1 flex-shrink-0" />}
-                {stat.trend === "down" && <TrendingDown className="h-4 w-4 text-red-500 mr-1 flex-shrink-0" />}
+            <CardContent className="p-3 sm:p-6 pt-0">
+              <div className="text-lg sm:text-xl lg:text-2xl font-bold text-gray-900 dark:text-white break-all sm:break-normal">{stat.value}</div>
+              <div className="flex items-center mt-1 sm:mt-2">
+                {stat.trend === "up" && <TrendingUp className="h-3 w-3 sm:h-4 sm:w-4 text-green-500 mr-1 flex-shrink-0" />}
+                {stat.trend === "down" && <TrendingDown className="h-3 w-3 sm:h-4 sm:w-4 text-red-500 mr-1 flex-shrink-0" />}
                 <span
-                  className={`text-sm truncate ${
+                  className={`text-xs sm:text-sm leading-tight ${
                     stat.trend === "up" ? "text-green-600" : stat.trend === "down" ? "text-red-600" : "text-gray-500"
                   }`}
                 >
@@ -127,26 +127,26 @@ export function DashboardOverview() {
       </div>
 
       {/* Charts and Recent Activity */}
-      <div className="grid grid-cols-1 xl:grid-cols-2 gap-4 sm:gap-6">
+      <div className="grid grid-cols-1 xl:grid-cols-2 gap-3 sm:gap-4 lg:gap-6">
         <Card>
-          <CardHeader>
-            <CardTitle>Transaction Volume</CardTitle>
-            <CardDescription>Daily transaction amounts over the last 7 days</CardDescription>
+          <CardHeader className="p-3 sm:p-6">
+            <CardTitle className="text-sm sm:text-base">Transaction Volume</CardTitle>
+            <CardDescription className="text-xs sm:text-sm">Daily transaction amounts over the last 7 days</CardDescription>
           </CardHeader>
-          <CardContent>
-            <div className="h-[300px] w-full">
+          <CardContent className="p-3 sm:p-6 pt-0">
+            <div className="h-[250px] sm:h-[300px] w-full overflow-hidden">
               <TransactionChart />
             </div>
           </CardContent>
         </Card>
 
         <Card>
-          <CardHeader>
-            <CardTitle>User Activity</CardTitle>
-            <CardDescription>Active users and transaction counts</CardDescription>
+          <CardHeader className="p-3 sm:p-6">
+            <CardTitle className="text-sm sm:text-base">User Activity</CardTitle>
+            <CardDescription className="text-xs sm:text-sm">Active users and transaction counts</CardDescription>
           </CardHeader>
-          <CardContent>
-            <div className="h-[300px] w-full">
+          <CardContent className="p-3 sm:p-6 pt-0">
+            <div className="h-[250px] sm:h-[300px] w-full overflow-hidden">
               <UserActivityChart />
             </div>
           </CardContent>
@@ -155,22 +155,24 @@ export function DashboardOverview() {
 
       {/* Recent Transactions */}
       <Card>
-        <CardHeader>
-          <div className="flex items-center justify-between">
+        <CardHeader className="p-3 sm:p-6">
+          <div className="flex flex-col space-y-2 sm:flex-row sm:items-center sm:justify-between sm:space-y-0">
             <div>
-              <CardTitle>Recent Transactions</CardTitle>
-              <CardDescription>Latest successful transactions</CardDescription>
+              <CardTitle className="text-sm sm:text-base">Recent Transactions</CardTitle>
+              <CardDescription className="text-xs sm:text-sm">Latest successful transactions</CardDescription>
             </div>
             <Link href="/transactions">
-              <Button variant="outline" size="sm">
+              <Button variant="outline" size="sm" className="w-full sm:w-auto">
                 <Eye className="h-4 w-4 mr-2" />
-                See More
+                <span className="text-xs sm:text-sm">See More</span>
               </Button>
             </Link>
           </div>
         </CardHeader>
-        <CardContent>
-          <RecentTransactions />
+        <CardContent className="p-3 sm:p-6 pt-0">
+          <div className="overflow-x-auto">
+            <RecentTransactions />
+          </div>
         </CardContent>
       </Card>
     </div>

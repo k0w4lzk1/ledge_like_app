@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
@@ -10,8 +10,11 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Separator } from "@/components/ui/separator"
 import { Badge } from "@/components/ui/badge"
 import { Save, Shield, Bell, Palette, Database, Download, Upload, RefreshCw, AlertTriangle } from "lucide-react"
+import { useTheme } from "next-themes"
 
 export function SettingsPage() {
+  const { theme, setTheme } = useTheme()
+  const [mounted, setMounted] = useState(false)
   const [settings, setSettings] = useState({
     companyName: "ETAKA TRADLINK",
     adminEmail: "admin@etatradlink.com",
@@ -20,13 +23,24 @@ export function SettingsPage() {
     notifications: true,
     emailAlerts: true,
     smsAlerts: false,
-    darkMode: false,
     autoBackup: true,
     backupFrequency: "daily",
   })
 
+  useEffect(() => {
+    setMounted(true)
+  }, [])
+
   const handleSettingChange = (key: string, value: any) => {
     setSettings((prev) => ({ ...prev, [key]: value }))
+  }
+
+  const handleThemeChange = (isDark: boolean) => {
+    setTheme(isDark ? "dark" : "light")
+  }
+
+  if (!mounted) {
+    return null
   }
 
   return (
@@ -171,8 +185,8 @@ export function SettingsPage() {
                   <p className="text-sm text-gray-500">Switch to dark theme</p>
                 </div>
                 <Switch
-                  checked={settings.darkMode}
-                  onCheckedChange={(checked) => handleSettingChange("darkMode", checked)}
+                  checked={theme === "dark"}
+                  onCheckedChange={handleThemeChange}
                 />
               </div>
             </CardContent>

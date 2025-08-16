@@ -29,6 +29,8 @@ import {
   Settings,
   Wallet,
   UserPlus,
+  MoreHorizontal,
+  Plus,
 } from "lucide-react"
 import { useAuth } from "@/components/auth-provider"
 
@@ -196,12 +198,62 @@ export function UserDashboardLayout({ children }: UserDashboardLayoutProps) {
             </div>
 
             {/* Notifications */}
-            <Button variant="ghost" size="sm" className="relative">
-              <Bell className="h-5 w-5" />
-              <span className="absolute -top-1 -right-1 h-4 w-4 bg-red-500 rounded-full text-xs text-white flex items-center justify-center">
-                3
-              </span>
-            </Button>
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button variant="ghost" size="sm" className="relative">
+                  <Bell className="h-5 w-5" />
+                  <span className="absolute -top-1 -right-1 h-4 w-4 bg-red-500 rounded-full text-xs text-white flex items-center justify-center">
+                    3
+                  </span>
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="end" className="w-80">
+                <div className="p-3 border-b">
+                  <h4 className="font-semibold text-sm">Notifications</h4>
+                  <p className="text-xs text-gray-500">Your recent notifications</p>
+                </div>
+                <div className="max-h-80 overflow-y-auto">
+                  <DropdownMenuItem className="flex items-start space-x-3 p-3">
+                    <div className="h-2 w-2 bg-green-500 rounded-full mt-2 flex-shrink-0"></div>
+                    <div className="flex-1">
+                      <p className="text-sm font-medium">Balance Updated</p>
+                      <p className="text-xs text-gray-500">Your balance has been credited with ₹25,000</p>
+                      <p className="text-xs text-gray-400 mt-1">5 minutes ago</p>
+                    </div>
+                    <Button variant="ghost" size="sm" className="h-6 w-6 p-0" title="Mark as read">
+                      <MoreHorizontal className="h-3 w-3" />
+                    </Button>
+                  </DropdownMenuItem>
+                  <DropdownMenuItem className="flex items-start space-x-3 p-3">
+                    <div className="h-2 w-2 bg-blue-500 rounded-full mt-2 flex-shrink-0"></div>
+                    <div className="flex-1">
+                      <p className="text-sm font-medium">Transaction Approved</p>
+                      <p className="text-xs text-gray-500">Your transaction request has been approved</p>
+                      <p className="text-xs text-gray-400 mt-1">2 hours ago</p>
+                    </div>
+                    <Button variant="ghost" size="sm" className="h-6 w-6 p-0" title="Mark as read">
+                      <MoreHorizontal className="h-3 w-3" />
+                    </Button>
+                  </DropdownMenuItem>
+                  <DropdownMenuItem className="flex items-start space-x-3 p-3">
+                    <div className="h-2 w-2 bg-orange-500 rounded-full mt-2 flex-shrink-0"></div>
+                    <div className="flex-1">
+                      <p className="text-sm font-medium">Payment Reminder</p>
+                      <p className="text-xs text-gray-500">You have a pending payment due</p>
+                      <p className="text-xs text-gray-400 mt-1">1 day ago</p>
+                    </div>
+                    <Button variant="ghost" size="sm" className="h-6 w-6 p-0" title="Mark as read">
+                      <MoreHorizontal className="h-3 w-3" />
+                    </Button>
+                  </DropdownMenuItem>
+                </div>
+                <div className="p-3 border-t">
+                  <Button size="sm" variant="outline" className="w-full">
+                    View All Notifications
+                  </Button>
+                </div>
+              </DropdownMenuContent>
+            </DropdownMenu>
 
             {/* User Menu */}
             <DropdownMenu>

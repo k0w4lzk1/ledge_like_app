@@ -33,6 +33,8 @@ import {
   LogOut,
   User,
   X,
+  MoreHorizontal,
+  Plus,
 } from "lucide-react"
 import { Input } from "@/components/ui/input"
 import { useTheme } from "next-themes"
@@ -73,7 +75,7 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
         <SheetContent side="left" className="w-72 p-0 bg-white dark:bg-gray-800">
           <div className="flex h-full flex-col">
             {/* Mobile sidebar header */}
-            <div className="flex h-16 items-center px-4 border-b border-gray-200 dark:border-gray-700">
+            <div className="flex h-16 items-center justify-between px-4 border-b border-gray-200 dark:border-gray-700">
               <Link href="/" className="flex items-center space-x-2" onClick={closeSidebar}>
                 <div className="h-8 w-8 bg-blue-600 rounded-lg flex items-center justify-center">
                   <span className="text-white font-bold text-sm">ET</span>
@@ -169,19 +171,9 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
               <Button variant="ghost" size="sm" className="lg:hidden p-2" onClick={() => setSidebarOpen(true)}>
                 <Menu className="h-5 w-5" />
               </Button>
-
-              <div className="relative hidden md:block">
-                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
-                <Input placeholder="Search..." className="pl-10 w-48 lg:w-64" />
-              </div>
             </div>
 
             <div className="flex items-center space-x-2 sm:space-x-4">
-              {/* Search button for mobile */}
-              <Button variant="ghost" size="sm" className="md:hidden">
-                <Search className="h-5 w-5" />
-              </Button>
-
               {/* Theme toggle */}
               {mounted && (
                 <Button variant="ghost" size="sm" onClick={() => setTheme(theme === "dark" ? "light" : "dark")}>
@@ -191,12 +183,89 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
               )}
 
               {/* Notifications */}
-              <Button variant="ghost" size="sm" className="relative">
-                <Bell className="h-5 w-5" />
-                <Badge className="absolute -top-1 -right-1 h-5 w-5 rounded-full p-0 flex items-center justify-center text-xs">
-                  3
-                </Badge>
-              </Button>
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <Button variant="ghost" size="sm" className="relative">
+                    <Bell className="h-5 w-5" />
+                    <Badge className="absolute -top-1 -right-1 h-5 w-5 rounded-full p-0 flex items-center justify-center text-xs">
+                      3
+                    </Badge>
+                  </Button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent align="end" className="w-80">
+                  <div className="p-3 border-b">
+                    <h4 className="font-semibold text-sm">Notifications</h4>
+                    <p className="text-xs text-gray-500">Manage your notifications</p>
+                  </div>
+                  <div className="max-h-80 overflow-y-auto">
+                    <DropdownMenuItem className="flex items-start space-x-3 p-3">
+                      <div className="h-2 w-2 bg-blue-500 rounded-full mt-2 flex-shrink-0"></div>
+                      <div className="flex-1">
+                        <p className="text-sm font-medium">New user registration</p>
+                        <p className="text-xs text-gray-500">John Doe created an account</p>
+                        <p className="text-xs text-gray-400 mt-1">2 minutes ago</p>
+                      </div>
+                      <DropdownMenu>
+                        <DropdownMenuTrigger asChild>
+                          <Button variant="ghost" size="sm" className="h-6 w-6 p-0">
+                            <MoreHorizontal className="h-3 w-3" />
+                          </Button>
+                        </DropdownMenuTrigger>
+                        <DropdownMenuContent align="end">
+                          <DropdownMenuItem>Mark as read</DropdownMenuItem>
+                          <DropdownMenuItem>View details</DropdownMenuItem>
+                          <DropdownMenuItem className="text-red-600">Delete</DropdownMenuItem>
+                        </DropdownMenuContent>
+                      </DropdownMenu>
+                    </DropdownMenuItem>
+                    <DropdownMenuItem className="flex items-start space-x-3 p-3">
+                      <div className="h-2 w-2 bg-green-500 rounded-full mt-2 flex-shrink-0"></div>
+                      <div className="flex-1">
+                        <p className="text-sm font-medium">Transaction completed</p>
+                        <p className="text-xs text-gray-500">Payment of ₹50,000 processed</p>
+                        <p className="text-xs text-gray-400 mt-1">1 hour ago</p>
+                      </div>
+                      <DropdownMenu>
+                        <DropdownMenuTrigger asChild>
+                          <Button variant="ghost" size="sm" className="h-6 w-6 p-0">
+                            <MoreHorizontal className="h-3 w-3" />
+                          </Button>
+                        </DropdownMenuTrigger>
+                        <DropdownMenuContent align="end">
+                          <DropdownMenuItem>Mark as read</DropdownMenuItem>
+                          <DropdownMenuItem>View details</DropdownMenuItem>
+                          <DropdownMenuItem className="text-red-600">Delete</DropdownMenuItem>
+                        </DropdownMenuContent>
+                      </DropdownMenu>
+                    </DropdownMenuItem>
+                    <DropdownMenuItem className="flex items-start space-x-3 p-3">
+                      <div className="h-2 w-2 bg-orange-500 rounded-full mt-2 flex-shrink-0"></div>
+                      <div className="flex-1">
+                        <p className="text-sm font-medium">Balance request pending</p>
+                        <p className="text-xs text-gray-500">User balance update required</p>
+                        <p className="text-xs text-gray-400 mt-1">3 hours ago</p>
+                      </div>
+                      <DropdownMenu>
+                        <DropdownMenuTrigger asChild>
+                          <Button variant="ghost" size="sm" className="h-6 w-6 p-0">
+                            <MoreHorizontal className="h-3 w-3" />
+                          </Button>
+                        </DropdownMenuTrigger>
+                        <DropdownMenuContent align="end">
+                          <DropdownMenuItem>Mark as read</DropdownMenuItem>
+                          <DropdownMenuItem>View details</DropdownMenuItem>
+                          <DropdownMenuItem className="text-red-600">Delete</DropdownMenuItem>
+                        </DropdownMenuContent>
+                      </DropdownMenu>
+                    </DropdownMenuItem>
+                  </div>
+                  <div className="p-3 border-t">
+                    <Button size="sm" variant="outline" className="w-full">
+                      View All Notifications
+                    </Button>
+                  </div>
+                </DropdownMenuContent>
+              </DropdownMenu>
 
               {/* User menu */}
               <DropdownMenu>
