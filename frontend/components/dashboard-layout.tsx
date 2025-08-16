@@ -73,16 +73,13 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
         <SheetContent side="left" className="w-72 p-0 bg-white dark:bg-gray-800">
           <div className="flex h-full flex-col">
             {/* Mobile sidebar header */}
-            <div className="flex h-16 items-center justify-between px-4 border-b border-gray-200 dark:border-gray-700">
+            <div className="flex h-16 items-center px-4 border-b border-gray-200 dark:border-gray-700">
               <Link href="/" className="flex items-center space-x-2" onClick={closeSidebar}>
                 <div className="h-8 w-8 bg-blue-600 rounded-lg flex items-center justify-center">
                   <span className="text-white font-bold text-sm">ET</span>
                 </div>
                 <span className="font-bold text-lg text-gray-900 dark:text-white">ETAKA TRADLINK</span>
               </Link>
-              <Button variant="ghost" size="sm" onClick={closeSidebar}>
-                <X className="h-5 w-5" />
-              </Button>
             </div>
 
             {/* Mobile navigation */}
@@ -166,16 +163,16 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
       {/* Main content */}
       <div className="lg:pl-64">
         {/* Top header */}
-        <header className="bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700 h-16 sticky top-0 z-40">
+        <header className="bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700 h-14 sm:h-16 sticky top-0 z-40">
           <div className="flex items-center justify-between px-4 sm:px-6 lg:px-8 h-full">
-            <div className="flex items-center space-x-4">
-              <Button variant="ghost" size="sm" className="lg:hidden" onClick={() => setSidebarOpen(true)}>
+            <div className="flex items-center space-x-2 sm:space-x-4">
+              <Button variant="ghost" size="sm" className="lg:hidden p-2" onClick={() => setSidebarOpen(true)}>
                 <Menu className="h-5 w-5" />
               </Button>
 
               <div className="relative hidden md:block">
                 <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
-                <Input placeholder="Search..." className="pl-10 w-64" />
+                <Input placeholder="Search..." className="pl-10 w-48 lg:w-64" />
               </div>
             </div>
 
